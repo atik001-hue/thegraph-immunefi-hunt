@@ -1,0 +1,16 @@
+[profile.default]
+src = "src/audit"
+out = "out"
+libs = ["lib"]
+test = "test"
+script = "script"
+solc_version = "0.8.26"
+evm_version = "paris"
+fs_permissions = [{ access = "read", path = "./" }]
+
+[rpc_endpoints]
+mainnet = "${MAINNET_RPC_URL}"
+arbitrum = "${ARBITRUM_RPC_URL}"
+
+[fmt]
+line_length = 120

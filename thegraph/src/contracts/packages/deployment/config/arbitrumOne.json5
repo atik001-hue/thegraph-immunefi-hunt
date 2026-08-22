@@ -1,0 +1,33 @@
+{
+  // Deployment configuration for Arbitrum One (mainnet)
+
+  RewardsManager: {
+    eligibilityOracle: 'RewardsEligibilityOracleA',
+  },
+
+  RecurringAgreementManager: {
+    // Wired to the same REO as RewardsManager. RAM stays dormant at launch
+    // (0 issuance + RecurringCollector paused) — this only pre-configures its
+    // eligibility oracle so it matches RM.
+    eligibilityOracle: 'RewardsEligibilityOracleA',
+  },
+
+  IssuanceAllocator: {
+    // Explicit issuance allocation table, by target contract name. The rates must
+    // sum to issuancePerBlock, which must equal RM's on-chain issuance rate — the
+    // scripts error on mismatch and never set the rate from config.
+    //
+    // DIPs-dormant rollout: RecurringAgreementManager is intentionally left out of
+    // the table so it receives 0 issuance — the protocol-funded indexing-agreement
+    // path is off at launch. RM self-mints the full on-chain rate (120.73 GRT/block).
+    // `issuance-connect` already puts RM at 100%, so `issuance-allocate` is a no-op.
+    //
+    // DIP activation (later) restores the split here — e.g. RM 114.73 + RAM 6 — and
+    // re-runs issuance-allocate, alongside the guardian unpausing RecurringCollector
+    // (the payer-funded path; managed out-of-band — see Gip0088Runbook.md).
+    issuancePerBlock: '120.73',
+    allocations: {
+      RewardsManager: { selfGrtPerBlock: '120.73' },
+    },
+  },
+}

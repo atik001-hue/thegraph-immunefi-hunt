@@ -1,0 +1,19 @@
+.env
+.env.*
+!.env.example
+out/
+cache/
+cache_forge/
+broadcast/
+
+# Dependencies (clone with pnpm install in src/contracts)
+node_modules/
+**/node_modules/
+
+# Foundry / IDE
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+**/.DS_Store
