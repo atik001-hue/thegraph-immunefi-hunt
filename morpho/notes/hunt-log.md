@@ -40,6 +40,6 @@
 
 ### Next if continuing
 
-- MetaMorpho `reallocate` / curator race fuzzing on fork
+- **Compound III (Comet)** — active pivot (`compound/`)
+- MetaMorpho `reallocate` fork fuzzing (optional)
 - Morpho Bundler3 batch interactions
-- Pivot to next Immunefi program if no edge found
