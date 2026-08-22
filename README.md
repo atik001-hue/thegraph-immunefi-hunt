@@ -1,32 +1,27 @@
 # BUG-BOUNTRY
 
-Immunefi bug bounty research workspace.
+Bug bounty research workspace (Immunefi + Cantina).
 
 ## Repositories
 
-| Project | Status | Immunefi |
-|---------|--------|----------|
-| [thegraph/](thegraph/) | Hunt complete (13 phases) — no submit-ready finding | [The Graph](https://immunefi.com/bug-bounty/thegraph/) |
-| morpho/ | **Next target** — setup in progress | [Morpho](https://immunefi.com/bug-bounty/morpho/) |
+| Project | Status | Program |
+|---------|--------|---------|
+| [thegraph/](thegraph/) | Closed (13 phases) — no submit-ready | [Immunefi](https://immunefi.com/bug-bounty/thegraph/) |
+| [morpho/](morpho/) | Closed (~23 phases) — no submit-ready | [Immunefi](https://immunefi.com/bug-bounty/morpho/) |
+| [compound/](compound/) | Closed (8 phases) — no submit-ready | Compound III / Comet |
+| [euler/](euler/) | **Active** — Phase 1–2 done | [Cantina $7.5M](https://cantina.xyz/bounties/4d285eee-602e-440a-845e-25e155cec26a) |
 
-## The Graph hunt summary
-
-- **13 phases** across RewardsManager, SubgraphService, HorizonStaking, DisputeManager, bridge, billing, issuance
-- **Closest lead:** `closeStaleAllocation` reward inflation — ruled out (same economics as `stopService`)
-- **L-07:** `feesProvisionTracker` slash desync — confirmed, no profit path, likely OOS
-- Full write-up: `thegraph/notes/phase13-status.md`
-
-## Quick start (The Graph)
+## Euler (current)
 
 ```bash
-cd thegraph
-cp .env.example .env   # add RPC URLs — never commit .env
-cd src/contracts && pnpm install   # first time only
-forge test --match-path test/poc/ -vv
+cd euler && forge test --match-path test/poc/ -vv
+cd src/euler-vault-kit && forge test --match-contract Phase02 -vv
 ```
+
+Scope: `euler/notes/scope.md` · Plan: `euler/notes/plan.md`
 
 ## Rules
 
 - Local forks only for live contract testing
-- PoC required for submissions
+- PoC required; measure attacker profit (SCONE-style)
 - Never commit `.env` or API keys
