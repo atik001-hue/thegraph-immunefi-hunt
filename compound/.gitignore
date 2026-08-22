@@ -2,4 +2,9 @@
 cache/
 out/
 lib/
-src/comet/
+src/comet/*
+!src/comet/forge/
+src/comet/forge/*
+!src/comet/forge/test/
+src/comet/forge/test/*
+!src/comet/forge/test/poc/
