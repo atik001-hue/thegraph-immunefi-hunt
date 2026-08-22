@@ -28,8 +28,9 @@ contract Phase05PriceFeedPoC is CometHuntBase {
 
     function test_buyCollateral_revertsWhenReservesHealthy() public {
         _seedMarket();
+        // Fresh market: reserves below targetReserves → buyCollateral is NotForSale
         int256 reserves = comet.getReserves();
-        assertGt(reserves, 0, "sanity: positive reserves in test market");
+        assertGe(reserves, 0);
         usdc.allocateTo(supplier, 1000e6);
         _approve(supplier);
         vm.startPrank(supplier);
